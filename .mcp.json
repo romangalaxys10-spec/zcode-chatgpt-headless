@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "chatgpt-headless": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${ZCODE_PLUGIN_ROOT}/mcp/server.mjs"],
+      "env": {
+        "CHATGPT_HL_MODEL": "${user_config.model}",
+        "CHATGPT_HL_INSTRUCTIONS": "${user_config.instructions}",
+        "CHATGPT_HL_TIMEOUT_MS": "${user_config.timeout_ms}"
+      },
+      "enabled": true,
+      "timeoutMs": 300000
+    }
+  }
+}

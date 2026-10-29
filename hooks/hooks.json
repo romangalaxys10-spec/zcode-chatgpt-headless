@@ -1,0 +1,68 @@
+{
+  "description": "chatgpt-headless hooks: session-start health check, pre-edit danger guard (block mode), post-edit GPT review, sync-on-change (PostToolUse fires brain-sync on plugin edits; Stop fires one final brain-sync at session end).",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/session-start-check.mjs"],
+            "timeoutMs": 20000,
+            "statusMessage": "chatgpt-headless: checking GPT tools health…"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/guard-dangerous-edits.mjs"],
+            "timeoutMs": 30000,
+            "statusMessage": "chatgpt-headless: checking edit for danger…"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/review-big-edits.mjs"],
+            "timeoutMs": 45000,
+            "statusMessage": "chatgpt-headless: GPT quick-review of big edit…"
+          },
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/sync-plugin-changes.mjs"],
+            "timeoutMs": 10000,
+            "statusMessage": "chatgpt-headless: brain-sync check…"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/sync-plugin-changes.mjs"],
+            "timeoutMs": 15000,
+            "statusMessage": "chatgpt-headless: final brain-sync…"
+          }
+        ]
+      }
+    ]
+  }
+}

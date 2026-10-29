@@ -1,0 +1,13 @@
+{
+  "name": "chatgpt-headless-marketplace",
+  "plugins": [
+    {
+      "name": "chatgpt-headless",
+      "source": "./",
+      "version": "0.6.1",
+      "description": "Consult ChatGPT on your behalf from inside ZCode: second opinions, brainstorming, panel debates and silent auto-review of big edits, via the official Codex backend using your own ChatGPT plan's OAuth tokens. Supported automation of your own account, not a workaround.",
+      "displayName": "ChatGPT Headless",
+      "category": "developer-tools"
+    }
+  ]
+}

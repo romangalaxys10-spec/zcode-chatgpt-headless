@@ -1,0 +1,40 @@
+{
+  "name": "chatgpt-headless",
+  "description": "Ask GPT models from your ChatGPT account headlessly (second opinions, brainstorming, independent review) via the official Codex backend, reusing the OAuth tokens from ~/.codex/auth.json. No UI, no screen interruption. Friendly model aliases (fast/balanced/smart/mini), /gpt and /debate commands, and a silent GPT auto-review hook for big edits.",
+  "description_i18n": {
+    "en": "Ask GPT models from your ChatGPT account headlessly (second opinions, brainstorming, independent review) via the official Codex backend, reusing the OAuth tokens from ~/.codex/auth.json. No UI, no screen interruption. Friendly model aliases (fast/balanced/smart/mini), /gpt and /debate commands, and a silent GPT auto-review hook for big edits.",
+    "zh-CN": "通过官方 Codex 后端无头调用你 ChatGPT 账号中的 GPT 模型（第二意见、头脑风暴、独立评审），复用 ~/.codex/auth.json 的 OAuth 令牌。无 UI、不打扰屏幕。"
+  },
+  "version": "0.6.1",
+  "author": {
+    "name": "d"
+  },
+  "keywords": [
+    "chatgpt",
+    "gpt",
+    "second-opinion",
+    "brainstorming",
+    "review",
+    "codex"
+  ],
+  "userConfig": {
+    "model": {
+      "title": "Model",
+      "description": "Default model slug (gpt-5.6-terra, gpt-5.6-luna, gpt-5.5, gpt-5.4-mini).",
+      "type": "string",
+      "default": "gpt-5.6-terra"
+    },
+    "instructions": {
+      "title": "System instructions",
+      "description": "Default system instructions for chatgpt_ask.",
+      "type": "string",
+      "default": "You are a concise, expert assistant. Give direct, well-reasoned answers."
+    },
+    "timeout_ms": {
+      "title": "Timeout (ms)",
+      "description": "Per-request timeout in milliseconds.",
+      "type": "string",
+      "default": "120000"
+    }
+  }
+}
